@@ -184,6 +184,8 @@ GEM
     webrobots (0.1.2)
     wisper (1.6.1)
     wisper-rspec (0.0.2)
+    zeus (0.15.4)
+      method_source (>= 0.6.7)
 
 PLATFORMS
   ruby
@@ -207,6 +209,7 @@ DEPENDENCIES
   web-console
   wisper
   wisper-rspec
+  zeus
 
 BUNDLED WITH
    1.11.2
