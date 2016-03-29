@@ -3,6 +3,7 @@ class Message < ActiveRecord::Base
     :last_name,
     :address1,
     :city,
+    :state,
     :zip,
     :email,
     :phone,
