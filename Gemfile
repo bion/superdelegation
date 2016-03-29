@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'awesome_print'
+gem 'fortitude'
 gem 'foundation-rails'
 gem 'jquery-rails'
+gem 'mechanize'
 gem 'pg'
 gem 'rails'
 gem 'sass-rails'
