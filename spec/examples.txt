@@ -1,0 +1,9 @@
+example_id                                                   | status | run_time        |
+------------------------------------------------------------ | ------ | --------------- |
+./spec/features/sending_message_to_wa_delegates_spec.rb[1:1] | passed | 0.29552 seconds |
+./spec/features/sending_message_to_wa_delegates_spec.rb[1:2] | passed | 0.05142 seconds |
+./spec/jobs/send_message_job_spec.rb[1:1:1]                  | passed | 0.00431 seconds |
+./spec/lib/delegates/WA/inslee_spec.rb[1:1:1]                | passed | 0.04892 seconds |
+./spec/lib/delegates/WA/inslee_spec.rb[1:1:2]                | passed | 0.044 seconds   |
+./spec/models/message_spec.rb[1:1:1:1]                       | passed | 0.26101 seconds |
+./spec/models/message_spec.rb[1:1:1:2]                       | passed | 0.00452 seconds |
