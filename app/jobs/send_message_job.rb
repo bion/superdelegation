@@ -9,6 +9,6 @@ class SendMessageJob < ActiveJob::Base
       .to_s
       .constantize
       .new(message)
-      .deliver
+      .deliver!
   end
 end

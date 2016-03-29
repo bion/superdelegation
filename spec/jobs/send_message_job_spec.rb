@@ -10,11 +10,11 @@ describe SendMessageJob do
         .with(message)
         .and_return(recipient)
 
-      allow(recipient).to receive(:deliver)
+      allow(recipient).to receive(:deliver!)
 
       subject.perform(message, "Delegates::WA::Inslee")
 
-      expect(recipient).to have_received(:deliver)
+      expect(recipient).to have_received(:deliver!)
     end
   end
 end

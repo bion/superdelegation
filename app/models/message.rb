@@ -9,6 +9,8 @@ class Message < ActiveRecord::Base
     :contents,
     presence: true
 
+  validates :phone, length: { is: 10 }
+
   before_validation :format_phone_number
 
   private
