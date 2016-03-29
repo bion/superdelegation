@@ -14,9 +14,11 @@ gem 'wisper'
 
 group :development, :test do
   gem 'byebug'
+  gem 'capybara-rails'
   gem 'faker'
   gem 'pry-rails'
   gem 'pry'
+  gem 'rspec-activejob'
   gem 'rspec-rails'
   gem 'wisper-rspec'
   gem 'zeus'
