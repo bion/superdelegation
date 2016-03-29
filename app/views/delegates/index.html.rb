@@ -4,6 +4,8 @@ class Views::Delegates::Index < Views::Base
   Delegate = Struct.new :name, :title
 
   def content
+    error_messages
+
     full_row do
       h2 "Bernie Superdelegation"
       h4 "Call to action"
@@ -22,7 +24,7 @@ TEXT
     form_for message, url: delegates_path, method: :post do |f|
       delegate_inputs(f)
       message_fields(f)
-      full_row { f.submit class: 'button' }
+      full_row { f.submit "Send Message", class: 'button' }
     end
   end
 
@@ -92,6 +94,18 @@ TEXT
           span(class: "switch-inactive", "aria-hidden" => true) do
             text("No")
           end
+        end
+      end
+    end
+  end
+
+  private
+
+  def error_messages
+    if flash[:error]
+      full_row do
+        div class: 'error' do
+          text(flash[:error])
         end
       end
     end

@@ -1,6 +1,4 @@
 class Message < ActiveRecord::Base
-  attr_accessor :include_inslee
-
   validates :first_name,
     :last_name,
     :address1,
@@ -25,5 +23,17 @@ class Message < ActiveRecord::Base
     end
 
     self
+  end
+
+  validates :phone, length: { is: 10 }
+
+  before_validation :format_phone_number
+
+  private
+
+  def format_phone_number
+    return unless phone.present?
+
+    self.phone = self.phone.gsub(/[^0-9]/, '')
   end
 end

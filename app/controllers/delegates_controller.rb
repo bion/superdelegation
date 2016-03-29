@@ -7,9 +7,7 @@ class DelegatesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      Delegates::WA::Inslee
-        .new(@message)
-        .deliver
+      SendMessageJob.perform_later(@message, "Delegates::WA::Inslee")
 
       redirect_to :success
     else
