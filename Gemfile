@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'awesome_print'
+gem 'delayed_job_active_record'
 gem 'fortitude', git: "git@github.com:ageweke/fortitude.git"
 gem 'foundation-rails'
 gem 'jquery-rails'
@@ -13,11 +14,14 @@ gem 'wisper'
 
 group :development, :test do
   gem 'byebug'
+  gem 'capybara-rails'
   gem 'faker'
   gem 'pry-rails'
   gem 'pry'
+  gem 'rspec-activejob'
   gem 'rspec-rails'
   gem 'wisper-rspec'
+  gem 'zeus'
 end
 
 group :development do

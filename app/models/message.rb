@@ -8,4 +8,14 @@ class Message < ActiveRecord::Base
     :phone,
     :contents,
     presence: true
+
+  before_validation :format_phone_number
+
+  private
+
+  def format_phone_number
+    return unless phone.present?
+
+    self.phone = self.phone.gsub(/[^0-9]/, '')
+  end
 end
