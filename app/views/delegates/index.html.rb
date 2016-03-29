@@ -73,14 +73,14 @@ TEXT
     delegate_switch(f, Delegate.new("inslee", 'Governor'))
   end
 
-  def delegate_switch(f, delegate)
+  def delegate_switch(f, delegate, checked = true)
     name = delegate.name
 
     full_row do
       p "Send to #{delegate.title} #{name.titleize}"
 
       div(class: "switch large") do
-        f.check_box("include_#{name}", class: "switch-input", id: "#{name}-switch")
+        f.check_box("include_#{name}", class: "switch-input", id: "#{name}-switch", checked: checked)
 
         label(class: "switch-paddle", for: "#{name}-switch") do
           span(class: "show-for-sr") do
