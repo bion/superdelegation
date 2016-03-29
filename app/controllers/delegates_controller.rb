@@ -1,6 +1,6 @@
 class DelegatesController < ApplicationController
   def index
-    @message = Message.new
+    @message = Message.new.with_delegates(:inslee)
   end
 
   def create
