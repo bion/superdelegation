@@ -8,13 +8,13 @@ class Delegates::WA::Inslee
     @message = message
   end
 
-  def deliver
+  def deliver!
     set_form_fields
     page = form.click_button
 
     check_for_errors!(page)
 
-    true
+    nil
   end
 
   private

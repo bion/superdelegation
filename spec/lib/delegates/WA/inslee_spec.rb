@@ -17,10 +17,10 @@ describe Delegates::WA::Inslee do
 
   subject { described_class.new(message) }
 
-  describe '#deliver' do
+  describe '#deliver!' do
     it "should send a message to Jay Inslee" do
       VCR.use_cassette("delegates/wa/inslee_success") do
-        expect(subject.deliver).to eq(true)
+        expect(subject.deliver!).to eq(nil)
       end
     end
 
@@ -29,7 +29,7 @@ describe Delegates::WA::Inslee do
         allow(message).to receive(:city) { "" }
 
         expect {
-          subject.deliver
+          subject.deliver!
         }.to raise_error(Delegates::SubmissionError)
       end
     end
