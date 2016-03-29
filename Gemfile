@@ -22,4 +22,5 @@ end
 
 group :development do
   gem 'web-console'
+  gem 'quiet_assets'
 end
