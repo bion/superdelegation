@@ -9,6 +9,8 @@ class Views::Delegates::Index < Views::Base
     end
 
     form_for message, url: delegates_path, method: :post do |f|
+      hidden_field_tag "message[state]", params[:state]
+
       [
         :first_name,
         :last_name,
