@@ -31,5 +31,22 @@ describe Message do
         expect { subject.valid? }.to_not raise_error
       end
     end
+
+    context 'contents validation' do
+      it "is valid if it's relevant" do
+        subject.contents = "superdelegates"
+
+        subject.valid?
+        expect(subject.errors[:contents]).to be_empty
+      end
+
+      it "is invalid if it isn't relevant" do
+        subject.contents = "hahah i'm a joke"
+
+        subject.valid?
+        expect(subject.errors[:contents]).to \
+          include("It looks like the contents of your message isn't relevant...")
+      end
+    end
   end
 end
