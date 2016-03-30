@@ -1,11 +1,7 @@
 class Views::Delegates::Index < Views::Base
-  needs :message
-
-  Delegate = Struct.new :name, :title
+  needs :message, :delegates
 
   def content
-    error_messages
-
     full_row do
       h2 "Bernie Superdelegation"
       h4 "Call to action"
@@ -21,9 +17,9 @@ message to the superdelegates in your state.
 TEXT
     end
 
-    form_for message, url: delegates_path, method: :post do |f|
-      hidden_field_tag "message[state]", params[:state]
+    error_messages
 
+    form_for :message, url: delegates_path(params[:state]), method: :post do |f|
       delegate_inputs(f)
       message_fields(f)
       full_row { f.submit "Send Message", class: 'button' }
@@ -34,28 +30,38 @@ TEXT
 
   def message_fields(f)
     full_row do
-      f.label :contents, "Your Message"
-      f.text_area :contents, rows: 6
+      f.label :contents do
+        text 'Your Message'
+        f.text_area :contents, rows: 6
+      end
     end
 
     full_row do
-      f.label :first_name
-      f.text_field :first_name
+      f.label :first_name do
+        text 'First Name'
+        f.text_field :first_name
+      end
     end
 
     full_row do
-      f.label :last_name
-      f.text_field :last_name
+      f.label :last_name do
+        text 'Last Name'
+        f.text_field :last_name
+      end
     end
 
     full_row do
-      f.label 'Address Line 1'
-      f.text_field :address1
+      f.label :address1 do
+        text 'Address Line 1'
+        f.text_field :address1
+      end
     end
 
     full_row do
-      f.label 'Address Line 2'
-      f.text_field :address2
+      f.label :address2 do
+        text 'Address Line 2'
+        f.text_field :address2
+      end
     end
 
     [
@@ -65,24 +71,31 @@ TEXT
       :phone
     ].each do |attr|
       full_row do
-        f.label attr
-        f.text_field attr
+        f.label attr do
+          text attr.to_s.titleize
+          f.text_field attr
+        end
       end
     end
   end
 
   def delegate_inputs(f)
-    delegate_switch(f, Delegate.new("inslee", 'Governor'))
+    delegates.each do |delegate|
+      delegate_switch(f, delegate)
+    end
   end
 
   def delegate_switch(f, delegate, checked = true)
     name = delegate.name
 
     full_row do
-      p "Send to #{delegate.title} #{name.titleize}"
+      p "Send to #{delegate.position.titleize} #{name.titleize}"
 
       div(class: "switch large") do
-        f.check_box("include_#{name}", class: "switch-input", id: "#{name}-switch", checked: checked)
+        f.check_box "delegates[#{name}]",
+          class: "switch-input",
+          id: "delegates-#{name}",
+          checked: checked
 
         label(class: "switch-paddle", for: "#{name}-switch") do
           span(class: "show-for-sr") do
@@ -104,12 +117,10 @@ TEXT
   private
 
   def error_messages
-    if flash[:error]
-      full_row do
-        div class: 'error' do
-          text(flash[:error])
-        end
-      end
+    return unless flash[:error]
+
+    flash[:error].each do |error|
+      full_row { div(class: 'error') { text(error) } }
     end
   end
 end
