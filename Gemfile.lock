@@ -69,6 +69,7 @@ GEM
     capybara-screenshot (1.0.12)
       capybara (>= 1.0, < 3)
       launchy
+    cliver (0.3.2)
     coderay (1.1.1)
     concurrent-ruby (1.0.1)
     crack (0.4.3)
@@ -121,12 +122,18 @@ GEM
     mime-types-data (3.2016.0221)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    multi_json (1.11.2)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     ntlm-http (0.1.1)
     pg (0.18.4)
+    poltergeist (1.9.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -221,6 +228,9 @@ GEM
       crack (>= 0.3.2)
       hashdiff
     webrobots (0.1.2)
+    websocket-driver (0.6.3)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     wisper (1.6.1)
     wisper-rspec (0.0.2)
     xpath (2.0.0)
@@ -244,6 +254,7 @@ DEPENDENCIES
   launchy
   mechanize
   pg
+  poltergeist
   pry
   pry-rails
   quiet_assets

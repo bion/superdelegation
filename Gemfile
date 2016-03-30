@@ -18,6 +18,7 @@ group :development, :test do
   gem 'capybara-screenshot'
   gem 'faker'
   gem 'launchy'
+  gem 'poltergeist'
   gem 'pry-rails'
   gem 'pry'
   gem 'rspec-activejob'

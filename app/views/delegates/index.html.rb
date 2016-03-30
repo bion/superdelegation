@@ -4,7 +4,7 @@ class Views::Delegates::Index < Views::Base
   def content
     full_row do
       h2 "Bernie Superdelegation"
-      h4 "Call to action"
+      h4 "Tell your superdelegates to respect your vote"
     end
 
     full_row(class: 'description') do
@@ -86,20 +86,25 @@ TEXT
   end
 
   def delegate_switch(f, delegate, checked = true)
-    name = delegate.name
+    delegate_title = delegate.name.titleize
+    el_name = "message[delegate_ids][]"
+    checked = message.delegates.empty? ?
+      true :
+      message.delegates.include?(delegate)
 
     full_row do
-      p "Send to #{delegate.position.titleize} #{name.titleize}"
+      p "Send to #{delegate.position.titleize} #{delegate_title}"
 
       div(class: "switch large") do
-        f.check_box "delegates[#{name}]",
+        check_box_tag el_name,
+          delegate.id,
+          checked,
           class: "switch-input",
-          id: "delegates-#{name}",
-          checked: checked
+          id: "message_delegates_#{delegate.id}"
 
-        label(class: "switch-paddle", for: "#{name}-switch") do
+        label(class: "switch-paddle", for: "message_delegates_#{delegate.id}") do
           span(class: "show-for-sr") do
-            text("Send to #{name.titleize}?")
+            text("Send to #{delegate_title}?")
           end
 
           span(class: "switch-active", "aria-hidden" => true) do
