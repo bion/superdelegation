@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'delegates#index'
+  root 'delegates#index', state: 'wa'
 
   scope ':state' do
     resources :delegates, only: %i[index create]

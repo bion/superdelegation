@@ -1,4 +1,8 @@
 class Message < ActiveRecord::Base
+  has_many :delegate_messages
+  has_many :delegates, through: :delegate_messages
+  accepts_nested_attributes_for :delegate_messages
+
   validates :first_name,
     :last_name,
     :address1,

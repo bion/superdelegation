@@ -1,17 +1,18 @@
 class DelegatesController < ApplicationController
-  Delegate = Struct.new :name, :position, :klass
-
   def index
-    set_delegates_for_state
     @message = Message.new
+
+    Delegate.where(state: state).each do |delegate|
+      @message.delegate_messages.build(delegate: delegate, selected: true)
+    end
   end
 
   def create
-    set_delegates_from_params
     @message = Message.new(message_params)
+    @delegates = @message.delegates
 
     if @message.save
-      SendMessages.to_delegates(@message, delegates)
+      SendMessages.to_delegates(@message)
 
       redirect_to :success
     else
@@ -36,42 +37,12 @@ class DelegatesController < ApplicationController
       :zip,
       :email,
       :phone,
-      :contents
+      :contents,
+      delegate_messages_attributes: [:delegate_id, :selected]
     ).merge(state: state)
-  end
-
-  def delegates
-    return @delegates if @delegates
-    raise 'Delegates unset'
-  end
-
-  def set_delegates_from_params
-    @delegates = delegates_manifest[state]
-      .select { |d| delegate_names_from_params.include? d['name'] }
-      .map { |d| delegate_from_h(d) }
-  end
-
-  def delegate_names_from_params
-    params
-      .require(:message)
-      .require(:delegates)
-      .select { |k, v| v == "1" }
-      .keys
-  end
-
-  def set_delegates_for_state
-    @delegates = delegates_manifest[state].map { |d| delegate_from_h(d) }
-  end
-
-  def delegates_manifest
-    @delegates_manifest ||= JSON.parse(File.read("config/delegates.json"))
   end
 
   def state
     params[:state].upcase
-  end
-
-  def delegate_from_h(hash)
-    Delegate.new(*hash.with_indifferent_access.values_at(*Delegate.members))
   end
 end
