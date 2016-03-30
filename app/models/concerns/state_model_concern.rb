@@ -5,7 +5,7 @@ module StateModelConcern
     before_validation :ensure_state_is_capitalized
   end
 
-  def ensure_state_is_upcased
+  def ensure_state_is_capitalized
     return unless state.present?
 
     self.state = self.state.upcase
