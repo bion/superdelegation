@@ -44,8 +44,7 @@ describe Message do
         subject.contents = "hahah i'm a joke"
 
         subject.valid?
-        expect(subject.errors[:contents]).to \
-          include("It looks like the contents of your message isn't relevant...")
+        expect(subject.errors[:contents]).to be_present
       end
     end
   end

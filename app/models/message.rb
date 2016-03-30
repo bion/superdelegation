@@ -39,9 +39,12 @@ class Message < ActiveRecord::Base
   ]
 
   def contents_is_relevant
-    unless RELEVANT_TERMS.any? { |term| contents.include?(term) }
+    downcased_contents = contents.downcase
+
+    unless RELEVANT_TERMS.any? { |term| downcased_contents.include?(term) }
       errors.add :contents,
-        "It looks like the contents of your message isn't relevant..."
+        "Your message doesn't appear to address superdelegates in the " +
+        "democratic primary."
     end
   end
 end
