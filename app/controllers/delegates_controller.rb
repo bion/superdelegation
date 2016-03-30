@@ -13,14 +13,12 @@ class DelegatesController < ApplicationController
     if @message.save
       SendMessages.to_delegates(@message, delegates)
 
+      session[:delegates] = delegates
       redirect_to :success
     else
       flash.now[:error] = @message.errors.full_messages
       render :index
     end
-  end
-
-  def success
   end
 
   private
