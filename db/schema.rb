@@ -35,8 +35,10 @@ ActiveRecord::Schema.define(version: 20160330062049) do
   create_table "delegate_messages", force: :cascade do |t|
     t.integer "message_id",  null: false
     t.integer "delegate_id", null: false
-    t.boolean "selected",    null: false
   end
+
+  add_index "delegate_messages", ["delegate_id"], name: "index_delegate_messages_on_delegate_id", using: :btree
+  add_index "delegate_messages", ["message_id"], name: "index_delegate_messages_on_message_id", using: :btree
 
   create_table "delegates", force: :cascade do |t|
     t.string   "state"

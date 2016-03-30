@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 feature "Sending message to WA state delegates" do
+  before do
+    Delegate.create! \
+      state: 'WA',
+      position: "Governor",
+      name: "Jay Inslee",
+      klass: "Delegates::WA::Inslee"
+  end
+
   scenario "the form is correctly filled in" do
     visit delegates_path("WA")
 

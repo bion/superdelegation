@@ -1,5 +1,5 @@
 class Views::Delegates::Index < Views::Base
-  needs :message
+  needs :message, :delegates
 
   def content
     full_row do
@@ -80,40 +80,27 @@ TEXT
   end
 
   def delegate_inputs(f)
-    message.delegate_messages.each do |dm|
-      delegate_switch(f, dm)
+    delegates.each do |d|
+      delegate_switch(f, d)
     end
   end
 
-  def delegate_switch(f, delegate_message, checked = true)
-    delegate = delegate_message.delegate
+  def delegate_switch(f, delegate, checked = true)
     delegate_title = delegate.name.titleize
-    name_prefix = "message[delegate_messages][]"
-    el_name = "#{name_prefix}[selected]"
+    el_name = "message[delegate_ids][]"
+    checked = message.delegates.empty? ?
+      true :
+      message.delegates.include?(delegate)
 
     full_row do
       p "Send to #{delegate.position.titleize} #{delegate_title}"
 
       div(class: "switch large") do
-        # hidden_field_tag "#{name_prefix}[delegate_id]", delegate.id
-
-        # check_box_tag el_name,
-        #   true,
-        #   checked,
-        #   class: "switch-input",
-        #   id: "message_delegates_#{delegate.id}"
-
-        f.collection_check_boxes(
-          :delegate_messages,
-          message.delegate_messages,
-          :selected,
-          :delegate_name
-        ) do |builder|
-          builder.check_box \
-            name: "message[delegate_messages][#{delegate.id}][selected]",
-            class: "switch-input",
-            id: "message_delegates_#{delegate.id}"
-        end
+        check_box_tag el_name,
+          delegate.id,
+          checked,
+          class: "switch-input",
+          id: "message_delegates_#{delegate.id}"
 
         label(class: "switch-paddle", for: "message_delegates_#{delegate.id}") do
           span(class: "show-for-sr") do

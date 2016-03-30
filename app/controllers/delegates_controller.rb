@@ -1,21 +1,18 @@
 class DelegatesController < ApplicationController
   def index
     @message = Message.new
-
-    Delegate.where(state: state).each do |delegate|
-      @message.delegate_messages.build(delegate: delegate, selected: true)
-    end
+    expose_delegates
   end
 
   def create
     @message = Message.new(message_params)
-    @delegates = @message.delegates
 
     if @message.save
       SendMessages.to_delegates(@message)
 
       redirect_to :success
     else
+      expose_delegates
       flash.now[:error] = @message.errors.full_messages
       render :index
     end
@@ -25,6 +22,10 @@ class DelegatesController < ApplicationController
   end
 
   private
+
+  def expose_delegates
+    @delegates ||= Delegate.where(state: state)
+  end
 
   def message_params
     params.require(:message).permit(
@@ -38,7 +39,7 @@ class DelegatesController < ApplicationController
       :email,
       :phone,
       :contents,
-      delegate_messages_attributes: [:delegate_id, :selected]
+      delegate_ids: []
     ).merge(state: state)
   end
 
