@@ -2,8 +2,8 @@ class States
   def self.supported
     state_codes = Set.new(Delegate.pluck("distinct state"))
 
-    STATES.reject do |code, name|
-      !state_codes.include?(code)
+    STATES.select do |code, name|
+      state_codes.include?(code)
     end
   end
 
