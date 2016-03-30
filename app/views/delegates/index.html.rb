@@ -124,8 +124,16 @@ TEXT
   def error_messages
     return unless flash[:error]
 
-    flash[:error].each do |error|
-      full_row { div(class: 'error') { text(error) } }
+    full_row(class: 'error-container') do
+      div(class: 'callout alert') do
+        h5 "There were errors in your form"
+
+        ul do
+          flash[:error].each do |error|
+            li(error)
+          end
+        end
+      end
     end
   end
 end
