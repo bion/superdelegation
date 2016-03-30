@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Sending message to WA state delegates" do
   scenario "the form is correctly filled in" do
-    visit delegates_path
+    visit state_path("WA")
 
     fill_in "First name", with: "Jeff"
     fill_in "Last name", with: "Bridges"
@@ -22,7 +22,7 @@ feature "Sending message to WA state delegates" do
   end
 
   scenario "invalid form submission" do
-    visit delegates_path
+    visit state_path("WA")
 
     fill_in "First name", with: "Jeff"
     fill_in "Last name", with: "Bridges"
