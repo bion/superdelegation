@@ -22,6 +22,8 @@ TEXT
     end
 
     form_for message, url: delegates_path, method: :post do |f|
+      hidden_field_tag "message[state]", params[:state]
+
       delegate_inputs(f)
       message_fields(f)
       full_row { f.submit "Send Message", class: 'button' }
