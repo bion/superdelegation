@@ -80,8 +80,8 @@ TEXT
   end
 
   def delegate_inputs(f)
-    delegates.each do |d|
-      delegate_switch(f, d)
+    delegates.each do |delegate|
+      delegate_switch(f, delegate)
     end
   end
 
