@@ -19,7 +19,7 @@ feature "Sending message to WA state delegates" do
     fill_in "Zip", with: "90210"
     fill_in "Email", with: "jeff@thedude.com"
     fill_in "Phone", with: "2125550011"
-    fill_in "Your Message", with: "You suck!!!!!!!!!!"
+    fill_in "Your Message", with: "use your superdelegate vote for bernie"
 
     click_on "Send Message"
 
