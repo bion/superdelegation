@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     resources :delegates, only: %i[index create]
   end
 
-  get 'success', to: 'delegates#success'
+  get 'success', to: 'success#show'
 end
