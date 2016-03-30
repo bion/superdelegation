@@ -7,12 +7,12 @@ class Views::Base < Fortitude::Widget
     div(add_classes(args, [:row]), &block)
   end
 
-  def column(size = :'small-12', args = {}, &block)
+  def column(size = 'small-12 large-6 large-centered', args = {}, &block)
     div(add_classes(args, [:columns, size]), &block)
   end
 
-  def full_row
-    row { column { yield } }
+  def full_row(args = {})
+    row(args) { column { yield } }
   end
 
   def add_classes(args, classes)

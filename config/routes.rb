@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root 'delegates#index'
 
-  resources :delegates, only: %i[index create]
+  scope ':state' do
+    resources :delegates, only: %i[index create]
+  end
 
   get 'success', to: 'delegates#success'
-  get '/:state', to: 'delegates#index', as: :state
 end
