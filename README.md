@@ -44,3 +44,5 @@ This will run as a delayed_job (??????)
 ```rb
 # TODO
 ```
+5. Update `db/seeds.rb` with your superdelegate (just follow the pattern) and run `rake db:seed`
+6. 
