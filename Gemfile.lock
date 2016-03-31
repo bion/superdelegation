@@ -170,6 +170,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.1.2)
+    recaptcha (1.2.0)
+      json
     ref (2.0.0)
     rspec-activejob (0.6.1)
       activejob (>= 4.2)
@@ -259,6 +261,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails
+  recaptcha
   rspec-activejob
   rspec-rails
   sass-rails

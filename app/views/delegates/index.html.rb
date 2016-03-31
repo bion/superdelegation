@@ -22,6 +22,8 @@ TEXT
     form_for :message, url: delegates_path(params[:state]), method: :post do |f|
       delegate_inputs(f)
       message_fields(f)
+
+      full_row(class: 'recaptcha-container') { text recaptcha_tags }
       full_row { f.submit "Send Message", class: 'button' }
     end
   end
