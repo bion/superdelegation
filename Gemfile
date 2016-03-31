@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'mechanize'
 gem 'pg'
 gem 'rails'
+gem "recaptcha", require: "recaptcha/rails"
 gem 'sass-rails'
 gem 'uglifier'
 gem 'wisper'
