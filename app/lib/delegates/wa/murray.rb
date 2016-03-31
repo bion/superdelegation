@@ -53,15 +53,15 @@ class Delegates::WA::Murray
     form[SUBJECT_FIELD_NAME] = 'Democratic party superdelegate'
 
     FIELD_NAMES.each do |k, v|
-      form[v] = message.send(k)
+      form[v] = message.public_send(k)
     end
   end
 
   def form
     @form ||= Mechanize
-    .new
-    .get(FORM_URL)
-    .forms
-    .detect { |form| form.action == FORM_URL && form.action == 'POST' }
+      .new
+      .get(FORM_URL)
+      .forms
+      .detect { |form| form.action == FORM_URL && form.method == 'POST' }
   end
 end
