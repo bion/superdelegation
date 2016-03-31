@@ -18,3 +18,29 @@
 After installation:
 `zeus start`
 From another terminal, run `zeus server` to start a test server or run `zeus test` to run tests.
+
+## Adding your first delegate!
+1. If it's a new state, create a new directory in `app/lib/delegates/` wtih the state's 2 letter acronym **in lowercase**
+2. Do the same thing under `spec/lib/delegates`
+3. Create `app/lib/delegates/<state>/<last_name>.rb and implement the following class...
+```rb
+class Delegates::WA::Cantwell
+  attr_reader :message
+
+  def initialize(message)
+    @message = message
+  end
+
+  def deliver!
+    # TODO: Implement mailer
+    # raises Delegates::SubmissionError on error
+    # returns nil on success
+  end
+
+end
+```
+This will run as a delayed_job (??????)
+4. Create `spec/lib/delegates/<state>/<last_name>.rb and implement similar tests...
+```rb
+# TODO
+```
