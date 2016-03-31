@@ -10,7 +10,7 @@ feature "Sending message to WA state delegates" do
   end
 
   scenario "the form is correctly filled in" do
-    visit delegates_path("WA")
+    visit state_path("WA")
 
     fill_in "First Name", with: "Jeff"
     fill_in "Last Name", with: "Bridges"
@@ -30,7 +30,7 @@ feature "Sending message to WA state delegates" do
   end
 
   scenario "invalid form submission" do
-    visit delegates_path("WA")
+    visit state_path("WA")
 
     fill_in "First Name", with: "Jeff"
     fill_in "Last Name", with: "Bridges"
