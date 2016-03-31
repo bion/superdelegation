@@ -32,7 +32,7 @@ class Views::Landing::Index < Views::Base
       ul do
         states.sort.to_h.each do |state_code, full_name|
           li do
-            link_to full_name, delegates_path(state_code)
+            link_to full_name, state_path(state_code)
           end
         end
       end

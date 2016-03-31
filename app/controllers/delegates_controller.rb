@@ -1,4 +1,6 @@
 class DelegatesController < ApplicationController
+  before_action :redirect_unless_state
+
   def index
     @message = Message.new
     expose_delegates
@@ -10,7 +12,7 @@ class DelegatesController < ApplicationController
     if verify_recaptcha(model: @message) && @message.save
       SendMessages.to_delegates(@message)
 
-      redirect_to :success
+      redirect_to success_path
     else
       expose_delegates
       flash.now[:error] = @message.errors.full_messages
@@ -45,5 +47,9 @@ class DelegatesController < ApplicationController
 
   def state
     params[:state].upcase
+  end
+
+  def redirect_unless_state
+    redirect_to root_path unless States.supported.include?(state)
   end
 end
