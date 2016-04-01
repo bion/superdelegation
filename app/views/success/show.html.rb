@@ -3,22 +3,32 @@ class Views::Success::Show < Views::Base
 
   def content
     full_row do
-      div do
-        h1(class: "title text-center") { text "Success!" }
+      h2(class: "title") { text "Bernie Superdelegation" }
+    end
 
-        if delegates.empty?
-          h4 "Your message was sent."
-        else
-          h4 "Your message was sent to the following representatives:"
-          ul { delegate_list }
-        end
 
-        a(target: "_blank",
-          href: "http://twitter.com/home?status=#{social_media_cta}") do
-
-          text "Tweet this!"
-        end
+    if delegates.empty?
+      full_row do
+        h4 "Your message was sent."
       end
+    else
+      full_row do
+        h4 "Your message was sent to the following representatives:"
+      end
+
+      ul { delegate_list }
+    end
+
+    full_row do
+      a(target: "_blank",
+        href: "http://twitter.com/home?status=#{social_media_cta}") do
+
+        text "Tweet Superdelegation to you followers!"
+      end
+    end
+
+    full_row do
+      img(src: "http://i.imgur.com/vM4Kr5M.jpg")
     end
   end
 
@@ -34,11 +44,13 @@ class Views::Success::Show < Views::Base
     position = delegate["position"].titleize
     name = delegate["name"].titleize
 
-    li "#{position} #{name}"
+    full_row do
+      li "#{position} #{name}"
+    end
   end
 
   def social_media_cta
     "Voters of #{params[:state]}! Encourage your representatives to " +
-    "support Bernie Sanders with the click of one button with #{root_url}."
+      "support Bernie Sanders with the click of one button using #{root_url}"
   end
 end
