@@ -12,6 +12,12 @@ class Views::Success::Show < Views::Base
           h4 "Your message was sent to the following representatives:"
           ul { delegate_list }
         end
+
+        a(target: "_blank",
+          href: "http://twitter.com/home?status=#{social_media_cta}") do
+
+          text "Tweet this!"
+        end
       end
     end
   end
@@ -29,5 +35,10 @@ class Views::Success::Show < Views::Base
     name = delegate["name"].titleize
 
     li "#{position} #{name}"
+  end
+
+  def social_media_cta
+    "Voters of #{params[:state]}! Encourage your representatives to " +
+    "support Bernie Sanders with the click of one button with #{root_url}."
   end
 end
