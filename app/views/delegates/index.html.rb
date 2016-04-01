@@ -4,7 +4,7 @@ class Views::Delegates::Index < Views::Base
   def content
     full_row do
       h2 "Bernie Superdelegation"
-      h4 "Call to action"
+      h4 "Tell your superdelegates to respect your vote"
     end
 
     full_row(class: 'description') do
@@ -22,6 +22,8 @@ class Views::Delegates::Index < Views::Base
     form_for :message, url: delegates_path(params[:state]), method: :post do |f|
       delegate_inputs(f)
       message_fields(f)
+
+      full_row(class: 'recaptcha-container') { text recaptcha_tags }
       full_row { f.submit "Send Message", class: 'button' }
     end
   end
@@ -86,20 +88,25 @@ class Views::Delegates::Index < Views::Base
   end
 
   def delegate_switch(f, delegate, checked = true)
-    name = delegate.name
+    delegate_title = delegate.name.titleize
+    el_name = "message[delegate_ids][]"
+    checked = message.delegates.empty? ?
+      true :
+      message.delegates.include?(delegate)
 
     full_row do
-      p "Send to #{delegate.position.titleize} #{name.titleize}"
+      p "Send to #{delegate.position.titleize} #{delegate_title}"
 
       div(class: "switch large") do
-        f.check_box "delegates[#{name}]",
+        check_box_tag el_name,
+          delegate.id,
+          checked,
           class: "switch-input",
-          id: "delegates-#{name}",
-          checked: checked
+          id: "message_delegates_#{delegate.id}"
 
-        label(class: "switch-paddle", for: "#{name}-switch") do
+        label(class: "switch-paddle", for: "message_delegates_#{delegate.id}") do
           span(class: "show-for-sr") do
-            text("Send to #{name.titleize}?")
+            text("Send to #{delegate_title}?")
           end
 
           span(class: "switch-active", "aria-hidden" => true) do
@@ -119,8 +126,16 @@ class Views::Delegates::Index < Views::Base
   def error_messages
     return unless flash[:error]
 
-    flash[:error].each do |error|
-      full_row { div(class: 'error') { text(error) } }
+    full_row(class: 'error-container') do
+      div(class: 'callout alert') do
+        h5 "There were errors in your form"
+
+        ul do
+          flash[:error].each do |error|
+            li(error)
+          end
+        end
+      end
     end
   end
 end

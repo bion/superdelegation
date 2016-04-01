@@ -1,8 +1,16 @@
 require 'rails_helper'
 
 feature "Sending message to WA state delegates" do
+  before do
+    Delegate.create! \
+      state: 'WA',
+      position: "Governor",
+      name: "Jay Inslee",
+      klass: "Delegates::WA::Inslee"
+  end
+
   scenario "the form is correctly filled in" do
-    visit delegates_path("WA")
+    visit state_path("WA")
 
     fill_in "First Name", with: "Jeff"
     fill_in "Last Name", with: "Bridges"
@@ -11,7 +19,7 @@ feature "Sending message to WA state delegates" do
     fill_in "Zip", with: "90210"
     fill_in "Email", with: "jeff@thedude.com"
     fill_in "Phone", with: "2125550011"
-    fill_in "Your Message", with: "You suck!!!!!!!!!!"
+    fill_in "Your Message", with: "use your superdelegate vote for bernie"
 
     click_on "Send Message"
 
@@ -22,7 +30,7 @@ feature "Sending message to WA state delegates" do
   end
 
   scenario "invalid form submission" do
-    visit delegates_path("WA")
+    visit state_path("WA")
 
     fill_in "First Name", with: "Jeff"
     fill_in "Last Name", with: "Bridges"

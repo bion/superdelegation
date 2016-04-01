@@ -1,10 +1,16 @@
 class Views::Success::Show < Views::Base
+  needs :delegates
+
   def content
     full_row do
-      div(class: "title text-center") do
-        h1 "Your message was successfully sent to:"
-        ul do
-          delegate_list
+      div do
+        h1(class: "title text-center") { text "Success!" }
+
+        if delegates.empty?
+          h4 "Your message was sent."
+        else
+          h4 "Your message was sent to the following representatives:"
+          ul { delegate_list }
         end
       end
     end

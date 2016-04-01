@@ -1,5 +1,5 @@
 class SuccessController < ApplicationController
   def show
-    @delegates = session[:delegates]
+    @delegates = session[:delegates] || []
   end
 end
