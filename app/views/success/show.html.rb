@@ -6,7 +6,6 @@ class Views::Success::Show < Views::Base
       h2(class: "title") { text "Bernie Superdelegation" }
     end
 
-
     if delegates.empty?
       full_row do
         h4 "Your message was sent."
@@ -28,7 +27,9 @@ class Views::Success::Show < Views::Base
     end
 
     full_row do
-      img(src: "http://i.imgur.com/vM4Kr5M.jpg")
+      link_to(root_path) do
+        img(src: "http://i.imgur.com/vM4Kr5M.jpg")
+      end
     end
   end
 
