@@ -2,18 +2,12 @@ $bernie-blue: #2199e8;
 $dark-blue: darken($bernie-blue, 20%);
 $error-color: #FF9494;
 
-h1 {
-  color: $bernie-blue;
-}
-
 .description p {
   border-bottom: 2px solid $bernie-blue;
   padding-bottom: 1em;
 }
 
 .title {
-  margin: 1em auto;
-  padding: 0.5em 0;
   border-bottom: 2px solid $bernie-blue;
 }
 
