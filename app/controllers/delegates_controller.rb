@@ -12,8 +12,8 @@ class DelegatesController < ApplicationController
     if verify_recaptcha(model: @message) && @message.save
       SendMessages.to_delegates(@message)
 
-      session[:delegates] = delegates
-      redirect_to success_path
+      session[:delegates] = @message.delegates
+      redirect_to success_path(state)
     else
       expose_delegates
       flash.now[:error] = @message.errors.full_messages
