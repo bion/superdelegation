@@ -54,6 +54,7 @@ class Delegates::WA::Murray
       'Phone' => message.phone,
       'Email *' => message.email,
       'Topic *' => TOPIC_ELECTIONS_VAL,
+      'Subject of your message *' => 'Lorem ipsum',
       'Your message:' => message.contents
     }
   end
