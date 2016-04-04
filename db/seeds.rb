@@ -11,3 +11,9 @@ Delegate.find_or_create_by \
   position: "Governor",
   name: "Jay Inslee",
   klass: "Delegates::WA::Inslee"
+
+Delegate.find_or_create_by \
+  state: 'WA',
+  position: "Senator",
+  name: "Patty Murray",
+  klass: "Delegates::WA::Murray"
