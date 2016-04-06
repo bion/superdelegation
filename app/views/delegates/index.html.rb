@@ -108,8 +108,16 @@ class Views::Delegates::Index < Views::Base
       true :
       message.delegates.include?(delegate)
 
+
     full_row do
-      p "Send to #{delegate.position.titleize} #{delegate_title}"
+      p  do
+        text "Send to #{delegate.position.titleize} #{delegate_title}"
+
+        if delegate.is_rep?
+          br
+          text'(only accepts messages from district residents)'
+        end
+      end
 
       div(class: "switch large") do
         check_box_tag el_name,
