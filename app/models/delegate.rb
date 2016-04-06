@@ -9,4 +9,8 @@ class Delegate < ActiveRecord::Base
 
   has_many :delegate_messages
   has_many :messages, through: :delegate_messages
+
+  def is_rep?
+    position == 'Representative'
+  end
 end
