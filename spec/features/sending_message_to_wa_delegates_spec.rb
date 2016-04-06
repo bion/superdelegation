@@ -17,6 +17,7 @@ feature "Sending message to WA state delegates" do
     fill_in "Address Line 1", with: "1234 Dude Lane"
     fill_in "City", with: "Los Angeles"
     fill_in "Zip", with: "90210"
+    fill_in "Zip Extension", with: '1616'
     fill_in "Email", with: "jeff@thedude.com"
     fill_in "Phone", with: "2125550011"
     fill_in "Your Message", with: "use your superdelegate vote for bernie"

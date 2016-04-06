@@ -36,6 +36,7 @@ class DelegatesController < ApplicationController
       :city,
       :state,
       :zip,
+      :zip_extension,
       :email,
       :phone,
       :contents,

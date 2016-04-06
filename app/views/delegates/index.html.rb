@@ -66,17 +66,31 @@ class Views::Delegates::Index < Views::Base
       end
     end
 
-    [
-      :city,
-      :zip,
-      :email,
-      :phone
-    ].each do |attr|
-      full_row do
-        f.label attr do
-          text attr.to_s.titleize
-          f.text_field attr
-        end
+    field_in_row(f, :city)
+    field_in_row(f, :zip)
+
+    zip_finder_link = capture do
+      link_to 'find it here',
+        'https://tools.usps.com/go/ZipLookupAction_input',
+        target: '__blank'
+    end
+
+    field_in_row f,
+      :zip_extension,
+      <<-MSG
+        +4 Zip Extension (required for contacting some officials, #{zip_finder_link})
+      MSG
+        .html_safe
+
+    field_in_row(f, :email)
+    field_in_row(f, :phone)
+  end
+
+  def field_in_row(f, attr, label_text = nil)
+    full_row do
+      f.label attr do
+        text label_text || attr.to_s.titleize
+        f.text_field attr
       end
     end
   end
@@ -94,8 +108,16 @@ class Views::Delegates::Index < Views::Base
       true :
       message.delegates.include?(delegate)
 
+
     full_row do
-      p "Send to #{delegate.position.titleize} #{delegate_title}"
+      p  do
+        text "Send to #{delegate.position.titleize} #{delegate_title}"
+
+        if delegate.is_rep?
+          br
+          text '(only accepts messages from district residents)'
+        end
+      end
 
       div(class: "switch large") do
         check_box_tag el_name,
