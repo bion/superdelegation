@@ -12,4 +12,20 @@ describe Delegate do
       expect(subject.is_rep?).to be false
     end
   end
+
+  describe 'validations' do
+    describe 'position' do
+      it 'is valid if it is included in the list' do
+        subject.position = 'Governor'
+        subject.valid?
+        expect(subject.errors[:position]).to be_empty
+      end
+
+      it 'is not valid if not included in the list' do
+        subject.position = 'Commodore'
+        subject.valid?
+        expect(subject.errors[:position]).to_not be_empty
+      end
+    end
+  end
 end
