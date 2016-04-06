@@ -24,8 +24,6 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-activejob'
   gem 'rspec-rails'
-  gem 'vcr'
-  gem 'webmock'
   gem 'wisper-rspec'
   gem 'zeus'
 end
@@ -33,4 +31,9 @@ end
 group :development do
   gem 'web-console'
   gem 'quiet_assets'
+end
+
+group :test do
+  gem 'vcr'
+  gem 'webmock'
 end

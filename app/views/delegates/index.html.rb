@@ -9,12 +9,12 @@ class Views::Delegates::Index < Views::Base
 
     full_row(class: 'description') do
       p <<-TEXT
-Now that Bernie has won Washington by a landslide, it's important we
-pressure our superdelegates to back him as well. Superdelegates
-represent approximately 10,000 votes worth of power, so it's well
-worth the time. Superdelegation allows you to easily send the same
-message to the superdelegates in your state.
-TEXT
+        Now that Bernie has won Washington by a landslide, it's important we
+        pressure our superdelegates to back him as well. Superdelegates
+        represent approximately 10,000 votes worth of power, so it's well
+        worth the time. Superdelegation allows you to easily send the same
+        message to the superdelegates in your state.
+        TEXT
     end
 
     error_messages

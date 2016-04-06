@@ -23,7 +23,7 @@ feature "Sending message to WA state delegates" do
 
     click_on "Send Message"
 
-    expect(page).to have_content("You successfully let them know")
+    expect(page).to have_content("Tweet Superdelegation")
 
     expect(SendMessageJob).to have_been_enqueued
       .with({ "_aj_globalid" => /Message/ }, "Delegates::WA::Inslee")

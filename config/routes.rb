@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   scope ':state' do
     resources :delegates, only: [:create]
-    get 'success', to: 'delegates#success'
+    get 'success', to: 'success#show'
   end
 end
