@@ -13,8 +13,7 @@ class Delegate < ActiveRecord::Base
     Representative
   ]
 
-  validates :position,
-    inclusion: { in: VALID_POSITIONS }
+  validates :position, inclusion: { in: VALID_POSITIONS }
 
   has_many :delegate_messages
   has_many :messages, through: :delegate_messages

@@ -115,7 +115,7 @@ class Views::Delegates::Index < Views::Base
 
         if delegate.is_rep?
           br
-          text'(only accepts messages from district residents)'
+          text '(only accepts messages from district residents)'
         end
       end
 
