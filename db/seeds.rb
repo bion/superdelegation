@@ -17,3 +17,9 @@ Delegate.find_or_create_by \
   position: "Senator",
   name: "Patty Murray",
   klass: "Delegates::WA::Murray"
+
+Delegate.find_or_create_by \
+  state: 'WA',
+  position: "Representative",
+  name: "Rick Larsen",
+  klass: "Delegates::WA::Larsen"
