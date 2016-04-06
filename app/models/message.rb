@@ -11,6 +11,7 @@ class Message < ActiveRecord::Base
     :city,
     :state,
     :zip,
+    :zip_extension,
     :email,
     :phone,
     :contents,
