@@ -22,7 +22,7 @@ class Views::Success::Show < Views::Base
       a(target: "_blank",
         href: "http://twitter.com/home?status=#{social_media_cta}") do
 
-        text "Tweet Superdelegation to you followers!"
+        text "Tweet Superdelegation to your followers!"
       end
     end
 
