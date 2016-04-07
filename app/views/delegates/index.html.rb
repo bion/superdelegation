@@ -20,10 +20,21 @@ class Views::Delegates::Index < Views::Base
     error_messages
 
     form_for :message, url: delegates_path(params[:state]), method: :post do |f|
-      delegate_inputs(f)
+      full_row do
+        h4 "Statewide Delegates"
+      end
+
+      other_delegate_inputs(f)
+
+      full_row do
+        h4(class: "rep-header") { text "Representatives" }
+        p "House Representatives only accept messages from people in their districts"
+      end
+
+      representative_inputs(f)
       message_fields(f)
 
-      full_row(class: 'recaptcha-container') { text recaptcha_tags }
+      full_row(class: 'recaptcha-container') { text recaptcha_tags(stoken: false) }
       full_row { f.submit "Send Message", class: 'button' }
     end
   end
@@ -95,35 +106,43 @@ class Views::Delegates::Index < Views::Base
     end
   end
 
-  def delegate_inputs(f)
-    delegates.each do |delegate|
-      delegate_switch(f, delegate)
+  def representative_inputs(f)
+    delegates.select(&:is_rep?).each do |rep|
+      checked = message.delegates.empty? ?
+        false :
+        message.delegates.include?(rep)
+
+      delegate_switch(f, rep, checked)
     end
   end
 
-  def delegate_switch(f, delegate, checked = true)
+  def other_delegate_inputs(f)
+    delegates.reject(&:is_rep?).each do |delegate|
+      checked = message.delegates.empty? ?
+        true :
+        message.delegates.include?(delegate)
+
+      delegate_switch(f, delegate, checked)
+    end
+  end
+
+  def delegate_switch(f, delegate, checked)
     delegate_title = delegate.name.titleize
     el_name = "message[delegate_ids][]"
-    checked = message.delegates.empty? ?
-      true :
-      message.delegates.include?(delegate)
-
 
     full_row do
-      p  do
+      p(class: "delegate-name") do
         text "Send to #{delegate.position.titleize} #{delegate_title}"
-
-        if delegate.is_rep?
-          br
-          text '(only accepts messages from district residents)'
-        end
       end
 
       div(class: "switch large") do
+        classes = ["switch-input"]
+        classes << "representative" if delegate.is_rep?
+
         check_box_tag el_name,
           delegate.id,
           checked,
-          class: "switch-input",
+          class: classes,
           id: "message_delegates_#{delegate.id}"
 
         label(class: "switch-paddle", for: "message_delegates_#{delegate.id}") do

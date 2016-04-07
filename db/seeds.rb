@@ -23,3 +23,21 @@ Delegate.find_or_create_by! \
   position: "Representative",
   name: "Rick Larsen",
   klass: "Delegates::WA::Larsen"
+
+Delegate.find_or_create_by! \
+  state: 'WA',
+  position: "Representative",
+  name: "Adam Smith",
+  klass: "Delegates::WA::Smith"
+
+Delegate.find_or_create_by! \
+  state: 'WA',
+  position: "Representative",
+  name: "Derek Kilmer",
+  klass: "Delegates::WA::Kilmer"
+
+Delegate.find_or_create_by! \
+  state: 'WA',
+  position: "Representative",
+  name: "Denny Heck",
+  klass: "Delegates::WA::Heck"
