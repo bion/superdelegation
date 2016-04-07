@@ -105,9 +105,8 @@ class Views::Delegates::Index < Views::Base
     delegate_title = delegate.name.titleize
     el_name = "message[delegate_ids][]"
     checked = message.delegates.empty? ?
-      true :
+      !delegate.is_rep? :
       message.delegates.include?(delegate)
-
 
     full_row do
       p  do
