@@ -119,10 +119,13 @@ class Views::Delegates::Index < Views::Base
       end
 
       div(class: "switch large") do
+        classes = ["switch-input"]
+        classes << "representative" if delegate.is_rep?
+
         check_box_tag el_name,
           delegate.id,
           checked,
-          class: "switch-input",
+          class: classes,
           id: "message_delegates_#{delegate.id}"
 
         label(class: "switch-paddle", for: "message_delegates_#{delegate.id}") do
