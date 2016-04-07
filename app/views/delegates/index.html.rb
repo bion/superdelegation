@@ -23,7 +23,7 @@ class Views::Delegates::Index < Views::Base
       delegate_inputs(f)
       message_fields(f)
 
-      full_row(class: 'recaptcha-container') { text recaptcha_tags }
+      full_row(class: 'recaptcha-container') { text recaptcha_tags(stoken: false) }
       full_row { f.submit "Send Message", class: 'button' }
     end
   end
