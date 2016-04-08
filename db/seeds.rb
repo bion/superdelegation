@@ -20,6 +20,12 @@ Delegate.find_or_create_by! \
 
 Delegate.find_or_create_by! \
   state: 'WA',
+  position: "Senator",
+  name: "Maria Cantwell",
+  klass: "Delegates::WA::Cantwell"
+
+Delegate.find_or_create_by! \
+  state: 'WA',
   position: "Representative",
   name: "Rick Larsen",
   klass: "Delegates::WA::Larsen"
