@@ -14,7 +14,7 @@ class Views::Landing::Index < Views::Base
         text "To get started, select your state from the list of supported states "\
           "below. Don't see your state? Help us add it on "
 
-        link_to "GitHub", "https://github.com/bionhart/superdelegation", target: "_blank"
+        link_to "GitHub", "https://github.com/bion/superdelegation", target: "_blank"
 
         text " or bother "
 
