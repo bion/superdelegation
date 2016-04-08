@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'mechanize'
 gem 'pg'
 gem 'poltergeist' # for delegate submission requiring JS
+gem 'puma'
 gem 'rails'
 gem "recaptcha", require: "recaptcha/rails"
 gem 'sass-rails'
