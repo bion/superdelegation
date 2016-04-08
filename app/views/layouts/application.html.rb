@@ -14,14 +14,19 @@ class Views::Layouts::Application < Views::Base
         title(content_for?(:title) ? yield(:title) : "Bernie Superdelegation")
 
         text stylesheet_link_tag 'application'
-        text javascript_include_tag 'application'
         text csrf_meta_tags
 
         meta(property: "og:url", content: "http://www.superdelegation.com")
         meta(property: "og:image", content: 'http://i.imgur.com/vM4Kr5M.jpg')
+
+        render 'shared/analytics'
       end
 
-      body { yield }
+      body do
+        yield
+
+        text javascript_include_tag 'application'
+      end
     end
   end
 end
