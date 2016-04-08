@@ -19,6 +19,7 @@ class Views::Layouts::Application < Views::Base
 
         meta(property: "og:url", content: "http://www.superdelegation.com")
         meta(property: "og:image", content: 'http://i.imgur.com/vM4Kr5M.jpg')
+        render 'shared/analytics'
       end
 
       body { yield }
