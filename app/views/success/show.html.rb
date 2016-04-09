@@ -12,7 +12,7 @@ class Views::Success::Show < Views::Base
       end
     else
       full_row do
-        h4 "Your message was sent to the following representatives:"
+        h4 "Your message was sent to the following delegates:"
       end
 
       ul { delegate_list }
