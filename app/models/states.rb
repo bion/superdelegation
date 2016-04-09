@@ -1,10 +1,16 @@
 class States
+  State = Struct.new :code, :name
+
   def self.supported
     state_codes = Set.new(Delegate.pluck("distinct state"))
 
     STATES.select do |code, name|
       state_codes.include?(code)
     end
+  end
+
+  def self.with_code(code)
+    State.new(code, STATES[code])
   end
 
   STATES = {
