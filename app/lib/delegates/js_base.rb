@@ -21,7 +21,7 @@ class Delegates::JSBase
   def configure_capybara
     Capybara.configure do |config|
       config.run_server = false
-      config.default_driver = :poltergeist
+      config.default_driver = :selenium
       config.app = ""
       config.app_host = host
     end
