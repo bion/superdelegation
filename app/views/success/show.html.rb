@@ -51,10 +51,10 @@ class Views::Success::Show < Views::Base
           Reaching out to voters directly is what turns a 30 point deficit in
           the polls into a political upset. We've seen this time and time again
           over the course of the 2016 primaries. Canvassing in your
-          neighborhood, phonebanking, texting, Facebanking are effective and
+          neighborhood, phonebanking, texting, and Facebanking are effective and
           easy tools at your disposal to instantly multiply your contribution
           to the campaign. Why stop at your own vote when you can convince 10,
-          100, or 1000 more people to Feel the Bern? There is work to be done
+          100, or 1,000 more people to Feel the Bern? There is work to be done
           for even the most phone-shy:
         EOF
       end
