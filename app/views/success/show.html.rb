@@ -3,7 +3,7 @@ class Views::Success::Show < Views::Base
 
   def content
     full_row do
-      h2(class: "title") { text "Bernie Superdelegation" }
+      h2(class: "title") { text "Superdelegation" }
     end
 
     if delegates.empty?
