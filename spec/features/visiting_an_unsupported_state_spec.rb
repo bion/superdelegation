@@ -12,7 +12,7 @@ feature 'Visiting a url for an unsupported state' do
   scenario 'redirecting back to home page' do
     visit '/ZZ'
 
-    expect(page).to have_content('select your state from the list')
+    expect(page).to have_content('Pick Your State')
     expect(current_path).to eq(root_path)
   end
 end

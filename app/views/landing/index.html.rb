@@ -4,17 +4,22 @@ class Views::Landing::Index < Views::Base
   def content
     full_row do
       h1 "Superdelegation"
+      h4 "Tell your superdelegates to respect your vote"
 
-      p <<-EOF
-        This site makes it easy for you to contact your state superdelegates and
-        encourage them to support Senator Sanders in states that went for Bernie.
-      EOF
+      p "Bernie Sanders has won the popular support of democrats in
+        many states whose superdelegates are pledged to Hillary
+        Clinton. Superdelegates represent approximately 10,000 people
+        worth of voting power, which makes them an undemocratic force
+        in favor of Clinton's candidacy."
+      p "This site allows you to send the same message to all of the
+        superdelegates that represent you by filling out just one form
+        so you can urge them to pledge their vote to the candidate you
+        and the majority of democrats in your state support."
+      p "Select your state from the list below to contact your superdelegates."
 
       p do
-        text "To get started, select your state from the list of supported states "\
-          "below. Don't see your state? Help us add it on "
-
-        link_to "GitHub", "https://github.com/bionhart/superdelegation", target: "_blank"
+        text "Don't see your state? Help us add it on "
+        link_to "GitHub", "https://github.com/bion/superdelegation", target: "_blank"
 
         text " or bother "
 
@@ -35,6 +40,10 @@ class Views::Landing::Index < Views::Base
             link_to full_name, state_path(state_code)
           end
         end
+      end
+
+      footer do
+        link_to "Privacy Policy", privacy_path
       end
     end
   end

@@ -15,6 +15,14 @@ class Views::Base < Fortitude::Widget
     row(args) { column { yield } }
   end
 
+  def full_row_left(classes: [])
+    div(class: ['row'] + classes) do
+      div(class: %w[columns large-12 small-12]) do
+        yield
+      end
+    end
+  end
+
   def add_classes(args, classes)
     classes += Array(args.fetch(:class, []))
     args.merge(class: classes)

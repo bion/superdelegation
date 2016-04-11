@@ -1,8 +1,17 @@
+$bernie-blue: #2199e8;
 $error-color: #FF9494;
 
+%bottom-line {
+  border-bottom: 2px solid $bernie-blue;
+}
+
 .description p {
-  border-bottom: 2px solid #2199e8;
-  padding-bottom: 1em;
+  @extend %bottom-line;
+  padding-bottom: 16px;
+}
+
+.title {
+  @extend %bottom-line;
 }
 
 .field_with_errors {
@@ -17,4 +26,14 @@ $error-color: #FF9494;
 
 .recaptcha-container {
   margin-bottom: 16px;
+}
+
+.rep-header, .delegate-name {
+  margin-bottom: 0;
+}
+
+.message-instructions {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  @extend %bottom-line;
 }

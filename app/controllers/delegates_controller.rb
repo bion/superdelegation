@@ -1,5 +1,6 @@
 class DelegatesController < ApplicationController
-  before_action :redirect_unless_state
+  before_action :redirect_unless_state_code
+  before_action :state
 
   def index
     @message = Message.new
@@ -12,7 +13,8 @@ class DelegatesController < ApplicationController
     if verify_recaptcha(model: @message) && @message.save
       SendMessages.to_delegates(@message)
 
-      redirect_to success_path
+      session[:delegates] = @message.delegates
+      redirect_to success_path(state_code)
     else
       expose_delegates
       flash.now[:error] = @message.errors.full_messages
@@ -20,13 +22,10 @@ class DelegatesController < ApplicationController
     end
   end
 
-  def success
-  end
-
   private
 
   def expose_delegates
-    @delegates ||= Delegate.where(state: state)
+    @delegates ||= Delegate.where(state: state_code)
   end
 
   def message_params
@@ -38,18 +37,24 @@ class DelegatesController < ApplicationController
       :city,
       :state,
       :zip,
+      :zip_extension,
       :email,
       :phone,
       :contents,
+      :stay_up_to_date,
       delegate_ids: []
-    ).merge(state: state)
+    ).merge(state: state_code)
   end
 
-  def state
+  def state_code
     params[:state].upcase
   end
 
-  def redirect_unless_state
-    redirect_to root_path unless States.supported.include?(state)
+  def state
+    @state ||= States.with_code(state_code)
+  end
+
+  def redirect_unless_state_code
+    redirect_to root_path unless States.supported.include?(state_code)
   end
 end
