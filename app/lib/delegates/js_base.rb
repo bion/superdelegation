@@ -1,8 +1,6 @@
 require 'capybara/poltergeist'
 
 class Delegates::JSBase
-  include Capybara::DSL
-
   attr_reader :message
   attr_reader :session
 
