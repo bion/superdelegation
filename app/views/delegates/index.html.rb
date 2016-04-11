@@ -57,10 +57,63 @@ class Views::Delegates::Index < Views::Base
   private
 
   def message_fields(f)
+    div(class: 'small reveal', id: 'writing-help', "data-reveal" => true) do
+      h3 "Topics you might address"
+
+      ul do
+        li do
+          text <<-EOF
+            Superdelegates that go directly against the will of their
+            constituents are being inherently undemocratic. A representative's
+            personal preferences should be represented in their vote as a
+            citizen, not as a representative of your state.
+          EOF
+        end
+
+        li do
+          text <<-EOF
+            You will be taking their stance with establishment politics very seriously
+            when they are up for re-election next.
+          EOF
+        end
+
+        li do
+          rawtext <<-EOF
+            Bernie consistently polls higher against Republicans in the general.
+            Source: <a target="_blank" href="http://www.realclearpolitics.com/epolls/2016/president/us/general_election_trump_vs_sanders-5565.html">http://www.realclearpolitics.com/epolls/2016/president/us/general_election_trump_vs_sanders-5565.html</a>
+          EOF
+        end
+      end
+
+      button(
+        class: 'close-button',
+        type: "button",
+        "data-close" => true,
+        "aria-label" => "Close modal"
+      ) do
+        span("aria-hidden" => "true") do
+          rawtext "&times;"
+        end
+      end
+    end
+
     full_row_left do
       f.label :contents do
         text 'Your Message'
         f.text_area :contents, rows: 6
+      end
+
+      p(class: 'help-text') do
+        rawtext <<-EOF
+          We don't write the message for you. Sending a bunch of form letters
+          to politicians has unfortunately very little impact &ndash; about as
+          much as a petition. It's important that your representatives hear
+          from you in your own voice.
+        EOF
+
+        link_to "Need help writing? Here's a handy list of points you can hit",
+          "#",
+          "data-open" => "writing-help"
       end
     end
 

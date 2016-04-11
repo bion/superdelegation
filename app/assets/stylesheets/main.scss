@@ -41,3 +41,9 @@ $error-color: #FF9494;
 .success.fb-share-button {
   margin-bottom: 1rem;
 }
+
+#writing-help {
+  li {
+    word-wrap: break-word;
+  }
+}
