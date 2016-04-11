@@ -63,10 +63,10 @@ class Views::Delegates::Index < Views::Base
       ul do
         li do
           text <<-EOF
-            Superdelegates that go directly against the will of their
-            constituents are being inherently undemocratic. A representative's
-            personal preferences should be represented in their vote as a
-            citizen, not as a representative of your state.
+            It's undemocratic for a superdelegate to go against the will of
+            their constituents. A representative's personal preferences should
+            be represented in their vote as a citizen, not as a representative
+            of your state.
           EOF
         end
 
