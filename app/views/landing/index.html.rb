@@ -36,6 +36,10 @@ class Views::Landing::Index < Views::Base
           end
         end
       end
+
+      footer do
+        link_to "Privacy Policy", privacy_path
+      end
     end
   end
 end
