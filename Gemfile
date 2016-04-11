@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'awesome_print'
 gem 'capybara-rails' # for delegate submission requiring JS
 gem 'delayed_job_active_record'
+gem 'delayed_job_web'
 gem 'fortitude', git: "http://github.com/ageweke/fortitude.git"
 gem 'foundation-rails'
 gem 'jquery-rails'
