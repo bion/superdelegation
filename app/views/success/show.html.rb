@@ -27,6 +27,12 @@ class Views::Success::Show < Views::Base
     end
 
     full_row do
+      link_to 'Help the campaign!',
+        'http://www.bernkit.com/',
+        target: '_blank'
+    end
+
+    full_row do
       link_to(root_path) do
         img(src: "http://i.imgur.com/vM4Kr5M.jpg")
       end
