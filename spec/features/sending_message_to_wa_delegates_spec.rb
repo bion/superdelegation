@@ -25,7 +25,7 @@ feature "Sending message to WA state delegates" do
 
     click_on "Send Message"
 
-    expect(page).to have_content("Tweet Superdelegation")
+    expect(page).to have_content("Tweet")
 
     message = Message.last
 

@@ -7,19 +7,21 @@ class Views::Layouts::Application < Views::Base
         meta(content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type")
         meta(charset: 'utf-8')
         meta(name: 'viewport', content: 'width=device-width, initial-scale=1.0')
-        meta \
-          name: "description",
-          content: "Tool for the Bernie Sanders campaign supporters to message local democratic superdelegates"
+        meta(name: "description", content: meta_description)
 
         title(content_for?(:title) ? yield(:title) : "Superdelegation")
 
         text stylesheet_link_tag 'application'
         text csrf_meta_tags
 
-        meta(property: "og:url", content: "http://www.superdelegation.com")
+        meta(property: "og:url", content: "http://superdelegation.com")
         meta(property: "og:image", content: 'http://i.imgur.com/vM4Kr5M.jpg')
+        meta(property: "og:title", content: "Superdelegation")
+        meta(property: "og:description", content: meta_description)
+        meta(property: "og:type", content: "website")
 
         render 'shared/analytics'
+        render 'shared/social_media'
       end
 
       body do
@@ -32,5 +34,12 @@ class Views::Layouts::Application < Views::Base
         text javascript_include_tag 'application'
       end
     end
+  end
+
+  private
+
+  def meta_description
+    "A tool for Bernie Sanders campaign supporters to message "\
+      "their local democratic superdelegates"
   end
 end
