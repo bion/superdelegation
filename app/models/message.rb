@@ -17,6 +17,7 @@ class Message < ActiveRecord::Base
     :contents,
     presence: true
 
+  validates :stay_up_to_date, inclusion: { in: [true, false ] }
   validates :phone, length: { is: 10 }
   validate :contents_is_relevant, if: :contents
 
