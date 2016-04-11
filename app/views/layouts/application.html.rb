@@ -23,7 +23,11 @@ class Views::Layouts::Application < Views::Base
       end
 
       body do
-        yield
+        div(class: 'row') do
+          div(class: 'columns large-12 large-centered') do
+            yield
+          end
+        end
 
         text javascript_include_tag 'application'
       end

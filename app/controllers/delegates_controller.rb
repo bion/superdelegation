@@ -1,5 +1,6 @@
 class DelegatesController < ApplicationController
-  before_action :redirect_unless_state
+  before_action :redirect_unless_state_code
+  before_action :state
 
   def index
     @message = Message.new
@@ -13,7 +14,7 @@ class DelegatesController < ApplicationController
       SendMessages.to_delegates(@message)
 
       session[:delegates] = @message.delegates
-      redirect_to success_path(state)
+      redirect_to success_path(state_code)
     else
       expose_delegates
       flash.now[:error] = @message.errors.full_messages
@@ -24,7 +25,7 @@ class DelegatesController < ApplicationController
   private
 
   def expose_delegates
-    @delegates ||= Delegate.where(state: state)
+    @delegates ||= Delegate.where(state: state_code)
   end
 
   def message_params
@@ -41,14 +42,18 @@ class DelegatesController < ApplicationController
       :phone,
       :contents,
       delegate_ids: []
-    ).merge(state: state)
+    ).merge(state: state_code)
   end
 
-  def state
+  def state_code
     params[:state].upcase
   end
 
-  def redirect_unless_state
-    redirect_to root_path unless States.supported.include?(state)
+  def state
+    @state ||= States.with_code(state_code)
+  end
+
+  def redirect_unless_state_code
+    redirect_to root_path unless States.supported.include?(state_code)
   end
 end
