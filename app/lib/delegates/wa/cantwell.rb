@@ -2,6 +2,8 @@ class Delegates::WA::Cantwell < Delegates::JSBase
   def deliver!
     session.visit host
 
+    sleep 2
+
     session.select 'Mr.', from: 'Title*'
     session.fill_in 'First Name*', with: message.first_name
     session.fill_in 'Last Name*', with: message.last_name
