@@ -11,7 +11,7 @@ class Views::Layouts::Application < Views::Base
           name: "description",
           content: "Tool for the Bernie Sanders campaign supporters to message local democratic superdelegates"
 
-        title(content_for?(:title) ? yield(:title) : "Bernie Superdelegation")
+        title(content_for?(:title) ? yield(:title) : "Superdelegation")
 
         text stylesheet_link_tag 'application'
         text csrf_meta_tags
