@@ -42,6 +42,16 @@ class Views::Success::Show < Views::Base
     end
 
     full_row do
+      p do
+        text "Direct share link for #{state.name}: "
+        link_to state_url(state.code), state_url(state.code)
+        br
+        text "Direct share link for other states: "
+        link_to root_url, root_url
+      end
+    end
+
+    full_row do
       h5 do
         strong "Help get out the vote"
       end
@@ -119,7 +129,7 @@ class Views::Success::Show < Views::Base
 
   def fb_share_button
     div class: 'fb-share-button success',
-      "data-href" => state_url(state),
+      "data-href" => state_url(state.code),
       "data-layout" => "button_count"
   end
 
@@ -139,7 +149,7 @@ class Views::Success::Show < Views::Base
   end
 
   def social_media_cta
-    "Voters of #{state}! Encourage your representatives to " +
+    "Voters of #{state.code}! Encourage your representatives to " +
       "support @BernieSanders with the click of one button using"
   end
 end
