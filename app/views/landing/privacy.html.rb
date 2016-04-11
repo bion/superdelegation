@@ -45,12 +45,20 @@ class Views::Landing::Privacy < Views::Base
       h4 "Google"
       p do
         text "Google's advertising requirements can be summed up by Google's Advertising Principles. They are put in place to provide a positive experience for users. "
-        link_to "More information here.", "https://support.google.com/adwordspolicy/answer/1316548?hl=en"
+        link_to "More information here.",
+          "https://support.google.com/adwordspolicy/answer/1316548?hl=en",
+          target: '__blank'
       end
       p "We have not enabled Google AdSense on our site but we may do so in the future."
 
       h4 "California Online Privacy Protection Act"
-      p "CalOPPA is the first state law in the nation to require commercial websites and online services to post a privacy policy. The law's reach stretches well beyond California to require a person or company in the United States (and conceivably the world) that operates websites collecting personally identifiable information from California consumers to post a conspicuous privacy policy on its website stating exactly the information being collected and those individuals with whom it is being shared, and to comply with this policy. - See more at: http://consumercal.org/california-online-privacy-protection-act-caloppa/#sthash.0FdRbT51.dpuf"
+      p do
+        text "CalOPPA is the first state law in the nation to require commercial websites and online services to post a privacy policy. The law's reach stretches well beyond California to require a person or company in the United States (and conceivably the world) that operates websites collecting personally identifiable information from California consumers to post a conspicuous privacy policy on its website stating exactly the information being collected and those individuals with whom it is being shared, and to comply with this policy. "
+        link_to "More information here.",
+          "http://consumercal.org/california-online-privacy-protection-act-caloppa/#sthash.0FdRbT51.dpuf",
+          target: '__blank'
+      end
+
       p "According to CalOPPA we agree to the following:"
       ul do
       li "Users can visit our site anonymously."
