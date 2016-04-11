@@ -42,6 +42,16 @@ class Views::Success::Show < Views::Base
     end
 
     full_row do
+      p do
+        text "Direct share link for #{States.with_code(state).name} state: "
+        link_to state_url(state), state_url(state)
+        br
+        text "Direct share link for other states: "
+        link_to root_url, root_url
+      end
+    end
+
+    full_row do
       h5 do
         strong "Help get out the vote"
       end
