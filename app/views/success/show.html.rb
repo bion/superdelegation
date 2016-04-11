@@ -3,7 +3,7 @@ class Views::Success::Show < Views::Base
 
   def content
     full_row do
-      h2(class: "title") { text "Bernie Superdelegation" }
+      h2(class: "title") { text "Superdelegation" }
     end
 
     if delegates.empty?
@@ -24,6 +24,12 @@ class Views::Success::Show < Views::Base
 
         text "Tweet Superdelegation to your followers!"
       end
+    end
+
+    full_row do
+      link_to 'Help the campaign!',
+        'http://www.bernkit.com/',
+        target: '_blank'
     end
 
     full_row do

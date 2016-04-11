@@ -8,13 +8,15 @@ class Views::Delegates::Index < Views::Base
     end
 
     full_row_left do
-      p <<-TEXT
-        Now that Bernie has won #{state.name}, it's important we
-        pressure our superdelegates to back him as well. Superdelegates
-        represent approximately 10,000 votes worth of power, so it's well
-        worth the time. Superdelegation allows you to easily send the same
-        message to the superdelegates in your state.
-      TEXT
+      p(class: 'message-instructions') do
+        text "Now that Bernie Sanders has won #{state.name}, it's
+          important we urge our superdelegates to back him as
+          well. Superdelegates represent approximately 10,000 people
+          worth of voting power, so it's well worth your
+          time. Superdelegation allows you to send the same message to
+          all of the superdelegates that represent you by filling out
+          just one form."
+      end
     end
 
     error_messages
