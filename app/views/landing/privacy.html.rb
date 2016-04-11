@@ -24,7 +24,7 @@ class Views::Landing::Privacy < Views::Base
       p "We do not use Malware Scanning."
       p do
         text "We do not use an SSL certificate but you may visit the "
-        link_to "base Heroku site to be under SSL:", "https://superdelegation.herokuapp.com/"
+        link_to "base Heroku site to be under SSL.", "https://superdelegation.herokuapp.com/"
       end
 
       h4 "Do we use 'cookies'?"
