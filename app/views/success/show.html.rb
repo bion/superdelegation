@@ -43,8 +43,8 @@ class Views::Success::Show < Views::Base
 
     full_row do
       p do
-        text "Direct share link for #{States.with_code(state).name} state: "
-        link_to state_url(state), state_url(state)
+        text "Direct share link for #{state.name}: "
+        link_to state_url(state.code), state_url(state.code)
         br
         text "Direct share link for other states: "
         link_to root_url, root_url
@@ -129,7 +129,7 @@ class Views::Success::Show < Views::Base
 
   def fb_share_button
     div class: 'fb-share-button success',
-      "data-href" => state_url(state),
+      "data-href" => state_url(state.code),
       "data-layout" => "button_count"
   end
 
@@ -149,7 +149,7 @@ class Views::Success::Show < Views::Base
   end
 
   def social_media_cta
-    "Voters of #{state}! Encourage your representatives to " +
+    "Voters of #{state.code}! Encourage your representatives to " +
       "support @BernieSanders with the click of one button using"
   end
 end
