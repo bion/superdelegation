@@ -110,6 +110,13 @@ class Views::Delegates::Index < Views::Base
 
     field_in_row(f, :email)
     field_in_row(f, :phone)
+
+    full_row_left do
+      f.label :stay_up_to_date do
+        f.check_box :stay_up_to_date
+        text "Stay up to date on these delegates' status"
+      end
+    end
   end
 
   def field_in_row(f, attr, label_text = nil)

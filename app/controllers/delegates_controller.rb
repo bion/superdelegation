@@ -41,6 +41,7 @@ class DelegatesController < ApplicationController
       :email,
       :phone,
       :contents,
+      :stay_up_to_date,
       delegate_ids: []
     ).merge(state: state_code)
   end

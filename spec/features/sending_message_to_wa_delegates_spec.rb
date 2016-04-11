@@ -21,10 +21,17 @@ feature "Sending message to WA state delegates" do
     fill_in "Email", with: "jeff@thedude.com"
     fill_in "Phone", with: "2125550011"
     fill_in "Your Message", with: "use your superdelegate vote for bernie"
+    check "Stay up to date on these delegates' status"
 
     click_on "Send Message"
 
     expect(page).to have_content("Tweet Superdelegation")
+
+    message = Message.last
+
+    expect(message.stay_up_to_date).to be true
+    expect(message.first_name).to eq "Jeff"
+    expect(message.last_name).to eq "Bridges"
 
     expect(SendMessageJob).to have_been_enqueued
       .with({ "_aj_globalid" => /Message/ }, "Delegates::WA::Inslee")
