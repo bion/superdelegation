@@ -1,4 +1,4 @@
-class DelegatesController < ApplicationController
+class MessagesController < ApplicationController
   before_action :redirect_unless_state_code
   before_action :state
 

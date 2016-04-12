@@ -1,4 +1,4 @@
-class Views::Delegates::Index < Views::Base
+class Views::Messages::Index < Views::Base
   needs :message, :delegates, :state
 
   def content
@@ -21,7 +21,7 @@ class Views::Delegates::Index < Views::Base
 
     error_messages
 
-    form_for :message, url: delegates_path(params[:state]), method: :post do |f|
+    form_for :message, url: messages_path(params[:state]), method: :post do |f|
       div(class: 'columns large-6') do
         full_row_left do
           h4 "Statewide Delegates"
