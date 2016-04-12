@@ -47,3 +47,9 @@ Delegate.find_or_create_by! \
   position: "Representative",
   name: "Denny Heck",
   klass: "Delegates::WA::Heck"
+
+Delegate.find_or_create_by! \
+  state: 'WA',
+  position: 'Representative',
+  name: 'Jim McDermott',
+  klass: 'Delegates::WA::Mcdermott'
