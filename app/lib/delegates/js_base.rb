@@ -1,5 +1,3 @@
-require 'capybara/poltergeist'
-
 class Delegates::JSBase
   attr_reader :message
   attr_reader :session

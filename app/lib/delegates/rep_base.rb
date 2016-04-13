@@ -1,4 +1,6 @@
 class Delegates::RepBase
+  include Delegates::Agent
+
   attr_reader :message
 
   CATEGORY_VAL = 'CONG'
@@ -71,6 +73,6 @@ class Delegates::RepBase
   end
 
   def start_page
-    @start_page ||= Mechanize.new.get(form_url)
+    @start_page ||= agent.get(form_url)
   end
 end

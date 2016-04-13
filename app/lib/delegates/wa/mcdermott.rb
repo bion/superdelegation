@@ -1,4 +1,6 @@
 class Delegates::WA::Mcdermott
+  include Delegates::Agent
+
   attr_reader :message
 
   FORM_ACTION = "https://forms.house.gov/htbin/formproc_za/mcdermott/webforms/new/issue_subscribe_parm.txt&form=/mcdermott/webforms/new/issue_subscribe_verify.html"
@@ -42,8 +44,7 @@ class Delegates::WA::Mcdermott
 
 
   def form
-    @form ||= Mechanize
-      .new
+    @form ||= agent
       .tap { |agent| agent.redirect_ok = true }
       .get('https://forms.house.gov/mcdermott/webforms/new/contact.shtml')
       .forms

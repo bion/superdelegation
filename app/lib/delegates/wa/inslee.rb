@@ -1,4 +1,6 @@
 class Delegates::WA::Inslee
+  include Delegates::Agent
+
   attr_reader :message
 
   DUMB_WA_STATE = '9227f6f4-cf63-e411-8d8b-005056ba7b6d'
@@ -50,8 +52,7 @@ class Delegates::WA::Inslee
   end
 
   def form
-    @form ||= Mechanize
-      .new
+    @form ||= agent
       .get('https://fortress.wa.gov/es/governor/')
       .forms
       .select { |form| form.action == '/es/governor/' }
