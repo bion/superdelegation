@@ -20,7 +20,66 @@
 
 After installation:
 `zeus start`
-From another terminal, run `zeus server` to start a test server or run `zeus test` to run tests.
+From another terminal, run `zeus server` to start a test server or run
+`zeus test` to run tests.
+
+## Contributing
+
+* Fork it and create a branch from `master`
+* Test the code you contribute.
+* **Wrap your delegate test cases in `VCR.use_cassette...` to avoid
+spamming delegates every time you run the test.**
+* Make a github issue if you have questions or encounter bugs
+
+### Adding a new delegate
+
+Messages are sent to delegates via webforms. To add a new delegate,
+find their contact page, then implement a class with two public
+methods: `def initialize(message)` and `def deliver!`. `message` will
+be an instance of [`Message`](https://github.com/bion/superdelegation/blob/master/app/models/message.rb) Your class
+should throw an error if it fails to send the message, and return `nil`
+if it succeeds.
+
+All classes for contacting reps must use the `def agent` method provided by
+including `include Delegates::Agent` in your class (unless the page
+requires JavaScript in which case see below). `agent` returns a
+[Mechanize](https://github.com/sparklemotion/mechanize) instance that
+can be used to drive interaction with the page. See the
+[`Delegates::WA::Murray`](https://github.com/bion/superdelegation/blob/master/app/lib/delegates/wa/murray.rb)
+class as an example and the
+[Mechanize docs](http://mechanize.rubyforge.org/EXAMPLES_rdoc.html)
+for more information.
+
+#### U.S. Representatives
+
+Reps almost all use basically the same website with a multi-step form
+requiring zip code confirmation before the user can submit the
+actual message. For these your class should inherit from
+[`Delegates::RepBase`](https://github.com/bion/superdelegation/blob/master/app/lib/delegates/rep_base.rb)
+and override protected methods as needed &mdash; usually just `def form_url`,
+`def rep_name`, and `def set_form_fields`.
+
+#### Forms requiring JavaScript
+
+Some delegates have contact forms that are handled using JavaScript.
+For these your class should inherit from
+[`Delegates::JSBase`](https://github.com/bion/superdelegation/blob/master/app/lib/delegates/js_base.rb),
+which provides a [Capybara](https://github.com/jnicklas/capybara)
+session running in [Phantomjs](https://github.com/ariya/phantomjs)
+accessible via the `def session` method. See the
+[`Delegates::WA::Cantwell`](https://github.com/bion/superdelegation/blob/master/app/lib/delegates/wa/cantwell.rb)
+class for an example.
+
+**Do not use the `JSBase` class unless the site you are dealing with
+necessitates it.**
+
+VCR cannot intercept HTTP requests from Phantomjs, so your test will
+make an actual form submission to the delegate every time it runs
+(assuming it works properly). For this reason, include the
+`:live_test` tag in the `describe` block of your test for the class, so
+that it won't run on CI and normal test suite runs. See the
+[`cantwell_spec.rb`](https://github.com/bion/superdelegation/blob/master/spec/lib/delegates/wa/cantwell_spec.rb)
+for an example.
 
 ## Contributors
 
