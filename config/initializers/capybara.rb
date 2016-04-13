@@ -1,3 +1,5 @@
+require 'capybara/poltergeist'
+
 if Rails.application.config.x.proxy.present?
   proxy_config = Rails.application.config.x.proxy
 
