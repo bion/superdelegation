@@ -1,10 +1,13 @@
 module Delegates::Agent
   def agent
-    Mechanize.new.tap(&method(:config_mechanize_proxy_if_needed))
+    Mechanize.new.tap(&method(:configure))
   end
 
-  def config_mechanize_proxy_if_needed(agent)
-    agent.set_proxy(*proxy_args) if Rails.env.production?
+  def configure(agent)
+    return unless Rails.env.production?
+
+    agent.set_proxy(*proxy_args)
+    agent.user_agent_alias = (Mechanize::AGENT_ALIASES.keys - ['Mechanize']).sample
   end
 
   def proxy_args
