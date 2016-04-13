@@ -76,4 +76,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # proxy for delegate form submission
+  config.x.proxy.host = ENV['PROXY_HOST']
+  config.x.proxy.port = ENV['PROXY_PORT'].to_i
+  config.x.proxy.username = ENV['PROXY_USERNAME']
+  config.x.proxy.password = ENV['PROXY_PASSWORD']
 end

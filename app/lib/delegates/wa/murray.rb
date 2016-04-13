@@ -1,4 +1,6 @@
 class Delegates::WA::Murray
+  include Delegates::Agent
+
   attr_reader :message
 
   FORM_URL = 'http://www.murray.senate.gov/public/index.cfm/contactme'
@@ -64,6 +66,6 @@ class Delegates::WA::Murray
   end
 
   def page
-    @page ||= Mechanize.new.get(FORM_URL)
+    @page ||= agent.get(FORM_URL)
   end
 end
