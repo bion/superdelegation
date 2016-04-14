@@ -21,6 +21,12 @@ class Message < ActiveRecord::Base
   validates :phone, length: { is: 10 }
   validate :contents_is_relevant, if: :contents
 
+  validates_numericality_of :zip, integer: true
+  validates_length_of :zip, is: 5
+
+  validates_numericality_of :zip_extension, integer: true
+  validates_length_of :zip_extension, is: 4
+
   before_validation :format_phone_number
 
   enum honorific: {

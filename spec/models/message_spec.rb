@@ -47,5 +47,51 @@ describe Message do
         expect(subject.errors[:contents]).to be_present
       end
     end
+
+    context 'zip code validation' do
+      it 'is valid if a 5-digit number' do
+        subject.zip = '99999'
+
+        subject.valid?
+        expect(subject.errors[:zip]).to be_empty
+      end
+
+      it 'is invalid if not a number' do
+        subject.zip = 'hahah'
+
+        subject.valid?
+        expect(subject.errors[:zip]).to be_present
+      end
+
+      it 'is invalid if it is not 5-digits' do
+        subject.zip = '9999'
+
+        subject.valid?
+        expect(subject.errors[:zip]).to be_present
+      end
+    end
+
+    context 'zip extension validation' do
+      it 'is valid if a 4-digit number' do
+        subject.zip_extension = '9999'
+
+        subject.valid?
+        expect(subject.errors[:zip_extension]).to be_empty
+      end
+
+      it 'is invalid if not a number' do
+        subject.zip_extension = 'hahah'
+
+        subject.valid?
+        expect(subject.errors[:zip_extension]).to be_present
+      end
+
+      it 'is invalid if it is not 4-digits' do
+        subject.zip_extension = '999'
+
+        subject.valid?
+        expect(subject.errors[:zip_extension]).to be_present
+      end
+    end
   end
 end
