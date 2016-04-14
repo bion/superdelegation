@@ -23,6 +23,13 @@ class Message < ActiveRecord::Base
 
   before_validation :format_phone_number
 
+  enum honorific: {
+    'Ms.' => 0,
+    'Mrs.' => 1,
+    'Mr.' => 2,
+    'Dr.' => 3
+  }
+
   private
 
   def format_phone_number
