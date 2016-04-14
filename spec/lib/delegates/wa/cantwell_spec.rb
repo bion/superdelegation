@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Delegates::WA::Cantwell, :live_test do
   let(:message) do
     instance_double "Message",
+      honorific: 'Mr.',
       first_name: "Thomas",
       last_name: "Shelby",
       address1: "121 Fir St",
