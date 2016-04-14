@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Delegates::WA::Murray do
   let(:message) do
     instance_double "Message",
+      honorific: 'Mr.',
       first_name: "Jeff",
       last_name: "Johnson",
       address1: "5607 Brooklyn Ave NE",

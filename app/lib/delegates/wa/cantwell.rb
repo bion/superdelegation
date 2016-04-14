@@ -5,7 +5,7 @@ class Delegates::WA::Cantwell < Delegates::JSBase
     sleep 2
 
     begin
-      session.select 'Mr.', from: 'Title*'
+      session.select (message.honorific || 'Ms.'), from: 'Title*'
       session.fill_in 'First Name*', with: message.first_name
       session.fill_in 'Last Name*', with: message.last_name
 

@@ -42,6 +42,7 @@ class MessagesController < ApplicationController
       :phone,
       :contents,
       :stay_up_to_date,
+      :honorific,
       delegate_ids: []
     ).merge(state: state_code)
   end

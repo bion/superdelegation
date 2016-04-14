@@ -111,7 +111,7 @@ class Views::Messages::Index < Views::Base
           from you in your own voice.
         EOF
 
-        link_to "Need help writing? Here's a handy list of points you can hit",
+        link_to "Need help writing? Here's a handy list of points you can hit.",
           "#",
           "data-open" => "writing-help"
       end
@@ -128,6 +128,22 @@ class Views::Messages::Index < Views::Base
       f.label :last_name do
         text 'Last Name'
         f.text_field :last_name
+      end
+    end
+
+    full_row_left do
+      f.label :honorific do
+        text 'Honorific'
+
+        f.select :honorific, Message.honorifics.keys, include_blank: true
+      end
+
+      p(class: 'help-text') do
+        rawtext <<-EOF
+          Some of the delegates require an honorific. If you would prefer not
+          to select one we will pick one at random in order to transmit your
+          message.
+        EOF
       end
     end
 

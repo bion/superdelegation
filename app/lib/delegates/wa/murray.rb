@@ -45,7 +45,7 @@ class Delegates::WA::Murray
 
   def form_values
     {
-      'Prefix *' => ['Mr.', 'Ms.'].sample, # correct sometimes,
+      'Prefix *' => message.honorific || ['Mr.', 'Ms.'].sample,
       'First Name *' => message.first_name,
       'Last Name *' => message.last_name,
       'Address *' => message.address1,
