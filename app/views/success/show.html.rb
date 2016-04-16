@@ -129,7 +129,7 @@ class Views::Success::Show < Views::Base
 
   def fb_share_button
     div class: 'fb-share-button success',
-      "data-href" => state_url(state.code),
+      "data-href" => root_url,
       "data-layout" => "button_count"
   end
 
