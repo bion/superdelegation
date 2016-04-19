@@ -2,6 +2,29 @@ require 'rails_helper'
 
 describe Message do
   describe 'validations' do
+    context 'email validation' do
+      it 'should allow normal-ass emails' do
+        subject.email = 'fun@gmail.com'
+        subject.valid?
+
+        expect(subject.errors[:email]).to be_empty
+      end
+
+      it 'should not allow bootleg emails' do
+        subject.email = 'fun@gmail'
+
+        expect(subject).to_not be_valid
+        expect(subject.errors[:email]).to_not be_empty
+      end
+
+      it 'should support DJ Bernstein' do
+        subject.email = 'dj@cr.yp.to'
+        subject.valid?
+
+        expect(subject.errors[:email]).to be_empty
+      end
+    end
+
     context "phone validation" do
       it 'should remove non-digit characters before validation' do
         subject.phone = "206-123-4567"
