@@ -27,6 +27,8 @@ class Message < ActiveRecord::Base
   validates_numericality_of :zip_extension, integer: true
   validates_length_of :zip_extension, is: 4
 
+  validates :email, format: { with: /.+@.+\..+/ }
+
   before_validation :format_phone_number
 
   enum honorific: {
