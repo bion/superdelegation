@@ -4,18 +4,9 @@ class Views::Landing::Index < Views::Base
   def content
     full_row do
       h1 "Superdelegation"
-      h4 "Tell your superdelegates to respect your vote"
 
-      p "Bernie Sanders has won the popular support of democrats in
-        many states whose superdelegates are pledged to Hillary
-        Clinton. Superdelegates represent approximately 10,000 people
-        worth of voting power, which makes them an undemocratic force
-        in favor of Clinton's candidacy."
-      p "This site allows you to send the same message to all of the
-        superdelegates that represent you by filling out just one form
-        so you can urge them to pledge their vote to the candidate you
-        and the majority of democrats in your state support."
-      p "Select your state from the list below to contact your superdelegates."
+      h4 "Send the same message to multiple elected officials that represent you by filling out just one form."
+      p "Select your state from the list below to get started."
 
       p do
         text "Don't see your state? Help us add it on "

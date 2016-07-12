@@ -12,7 +12,7 @@ class Views::Success::Show < Views::Base
       end
     else
       full_row do
-        h4 "Your message was sent to the following delegates:"
+        h4 "Your message was sent to the following elected officials:"
       end
 
       ul { delegate_list }
@@ -20,11 +20,6 @@ class Views::Success::Show < Views::Base
 
     full_row do
       h4 "What can I do next?"
-
-      p <<-EOF
-        Bernie is relying on grassroots organization to spread his message. We
-        cannot win without you! Here's how you can help:
-      EOF
 
       h5 do
         strong "Share this website"
@@ -48,75 +43,6 @@ class Views::Success::Show < Views::Base
         br
         text "Direct share link for other states: "
         link_to root_url, root_url
-      end
-    end
-
-    full_row do
-      h5 do
-        strong "Help get out the vote"
-      end
-
-      p do
-        text <<-EOF
-          Reaching out to voters directly is what turns a 30 point deficit in
-          the polls into a political upset. We've seen this time and time again
-          over the course of the 2016 primaries. Canvassing in your
-          neighborhood, phonebanking, texting, and Facebanking are effective and
-          easy tools at your disposal to instantly multiply your contribution
-          to the campaign. Why stop at your own vote when you can convince 10,
-          100, or 1,000 more people to Feel the Bern? There is work to be done
-          for even the most phone-shy:
-        EOF
-      end
-
-      ul do
-        li do
-          link_to "Facebank for upcoming primaries",
-            "http://feelthebern.events",
-            target: "_blank"
-        end
-
-        li do
-          link_to "Send texts for Bernie",
-            "http://textforbernie.com",
-            target: "_blank"
-        end
-
-        li do
-          link_to "Phonebank for Bernie",
-            "http://bernie.to/pb",
-            target: "_blank"
-        end
-
-        li do
-          link_to "Extra fun: Track your phonebanking stats and compete with your friends!",
-            "http://berniepb.com",
-            target: "_blank"
-        end
-
-        li do
-          link_to "Find local Bernie events near you",
-            "http://bernie.to/map",
-            target: "_blank"
-        end
-
-        li do
-          link_to "Drop into your local campaign office",
-            "http://bernie.to/map",
-            target: "_blank"
-        end
-
-        li do
-          link_to "Explore dozens of other volunteer resources at bernkit.com",
-            "http://www.bernkit.com",
-            target: "_blank"
-        end
-      end
-    end
-
-    full_row do
-      link_to(root_path) do
-        img(src: "http://i.imgur.com/vM4Kr5M.jpg")
       end
     end
   end
@@ -149,7 +75,7 @@ class Views::Success::Show < Views::Base
   end
 
   def social_media_cta
-    "Voters of #{state.code}! Encourage your representatives to " +
-      "support @BernieSanders with the click of one button using"
+    "Residents of #{state.code}! Contact your elected officals" +
+    "with the click of one button using superdelegation.com"
   end
 end

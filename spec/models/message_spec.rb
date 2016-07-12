@@ -55,22 +55,6 @@ describe Message do
       end
     end
 
-    context 'contents validation' do
-      it "is valid if it's relevant" do
-        subject.contents = "superdelegates"
-
-        subject.valid?
-        expect(subject.errors[:contents]).to be_empty
-      end
-
-      it "is invalid if it isn't relevant" do
-        subject.contents = "hahah i'm a joke"
-
-        subject.valid?
-        expect(subject.errors[:contents]).to be_present
-      end
-    end
-
     context 'zip code validation' do
       it 'is valid if a 5-digit number' do
         subject.zip = '99999'
