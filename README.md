@@ -30,6 +30,7 @@ From another terminal, run `zeus server` to start a test server or run
 * **Wrap your delegate test cases in `VCR.use_cassette...` to avoid
 spamming delegates every time you run the test.**
 * Make a github issue if you have questions or encounter bugs
+* Make a pull request when your contribution is ready
 
 ### Adding a new delegate
 
