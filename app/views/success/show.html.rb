@@ -75,7 +75,7 @@ class Views::Success::Show < Views::Base
   end
 
   def social_media_cta
-    "Residents of #{state.code}! Contact your elected officals" +
-    "with the click of one button using superdelegation.com"
+    "Residents of #{state.code}: contact your elected officals " \
+      "with the click of a button using superdelegation.com!"
   end
 end
