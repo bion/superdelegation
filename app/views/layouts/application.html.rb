@@ -15,7 +15,6 @@ class Views::Layouts::Application < Views::Base
         text csrf_meta_tags
 
         meta(property: "og:url", content: "http://superdelegation.com")
-        meta(property: "og:image", content: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Bernie_Sanders_2016_logo.png')
         meta(property: "og:title", content: "Superdelegation")
         meta(property: "og:description", content: meta_description)
         meta(property: "og:type", content: "website")
@@ -39,7 +38,6 @@ class Views::Layouts::Application < Views::Base
   private
 
   def meta_description
-    "A tool for Bernie Sanders campaign supporters to message "\
-      "their local democratic superdelegates"
+    "A tool for U.S. residents to contact their elected officals."
   end
 end
